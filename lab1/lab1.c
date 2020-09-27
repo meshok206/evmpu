@@ -6,7 +6,8 @@
 #include <inttypes.h>
 #include <time.h>
 
-double seed = 1111.0;
+double seed = 11110;
+
 double random_double() {
   double k = 16807.0;
   double m = 2147483647.0;
@@ -22,10 +23,11 @@ double random_double() {
 int main(int argc, char **argv) {
   srand((long)time(NULL));
   seed = rand();
-  char *end = (argv[1] + strlen(argv[1]));
-  uint64_t N = strtoull(argv[1], &end, 10);  
+  char *str_end = (argv[1] + strlen(argv[1]));
+  uint64_t N = strtoull(argv[1], &str_end, 10);  
   uint64_t M = 0;
 
+  for(int i = 0; i < 10000; i++);
   for(uint64_t i = 0; i < N + 1; i++) {
     double x = random_double();
     double y = random_double();
@@ -34,7 +36,7 @@ int main(int argc, char **argv) {
       M++;
     }
   }
-
+  
   printf("%lf\n", (4*M)/(double)N);
 
   return 0;
